@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkEvent", "ParkEvent\ParkEvent.csproj", "{1216B346-6990-4FBA-B6F5-53CA2989C66A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1216B346-6990-4FBA-B6F5-53CA2989C66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1216B346-6990-4FBA-B6F5-53CA2989C66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1216B346-6990-4FBA-B6F5-53CA2989C66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1216B346-6990-4FBA-B6F5-53CA2989C66A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F44CB42E-2946-4157-A848-F28234E73FD4}
+	EndGlobalSection
+EndGlobal

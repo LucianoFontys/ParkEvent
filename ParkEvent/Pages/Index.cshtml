@@ -4,7 +4,162 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park Events - Adventure Bay Resort</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏖️ Adventure Bay Events</h1>
+            <p>Discover amazing activities and entertainment at our vacation paradise</p>
+        </div>
+
+        <div class="login-customers">
+            <button class="login-btn" onclick="window.location.href='/LoginCustomers'">Login as Guest</button>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Events</button>
+            <button class="filter-tab" data-filter="family">Family Fun</button>
+            <button class="filter-tab" data-filter="sports">Sports</button>
+            <button class="filter-tab" data-filter="entertainment">Entertainment</button>
+            <button class="filter-tab" data-filter="food">Food & Dining</button>
+            <button class="filter-tab" data-filter="adventure">Adventure</button>
+        </div>
+
+        <div class="events-grid">
+            <div class="event-card" data-category="sports" onclick="openEvent('beach-volleyball')">
+                <div class="event-badge popular">Popular</div>
+                <div class="event-icon sports">🏐</div>
+                <div class="event-title">Beach Volleyball Tournament</div>
+                <div class="event-time">⏰ Today, 2:00 PM - 5:00 PM</div>
+                <div class="event-location">📍 Main Beach Court</div>
+                <div class="event-description">Join our exciting beach volleyball tournament! Teams of 4, all skill levels welcome. Prizes for winners!</div>
+                <div class="event-price">Free Entry</div>
+            </div>
+
+            <div class="event-card" data-category="entertainment" onclick="openEvent('live-music')">
+                <div class="event-badge new">New</div>
+                <div class="event-icon entertainment">🎸</div>
+                <div class="event-title">Live Music Night</div>
+                <div class="event-time">⏰ Tonight, 8:00 PM - 11:00 PM</div>
+                <div class="event-location">📍 Sunset Amphitheater</div>
+                <div class="event-description">Enjoy live performances from local bands under the stars. Dancing encouraged!</div>
+                <div class="event-price">$15 per person</div>
+            </div>
+
+            <div class="event-card" data-category="family" onclick="openEvent('treasure-hunt')">
+                <div class="event-icon family">🏴‍☠️</div>
+                <div class="event-title">Pirate Treasure Hunt</div>
+                <div class="event-time">⏰ Tomorrow, 10:00 AM - 12:00 PM</div>
+                <div class="event-location">📍 Adventure Playground</div>
+                <div class="event-description">Kids and families can search for hidden treasure around the park. Maps and clues provided!</div>
+                <div class="event-price">$8 per child</div>
+            </div>
+
+            <div class="event-card" data-category="food" onclick="openEvent('bbq-feast')">
+                <div class="event-badge limited">Limited Spots</div>
+                <div class="event-icon food">🍖</div>
+                <div class="event-title">BBQ Beach Feast</div>
+                <div class="event-time">⏰ Saturday, 6:00 PM - 9:00 PM</div>
+                <div class="event-location">📍 Beachside Pavilion</div>
+                <div class="event-description">All-you-can-eat BBQ buffet with fresh seafood, grilled meats, and tropical sides.</div>
+                <div class="event-price">$45 per adult, $25 per child</div>
+            </div>
+
+            <div class="event-card" data-category="adventure" onclick="openEvent('zip-line')">
+                <div class="event-icon adventure">🌲</div>
+                <div class="event-title">Canopy Zip Line Adventure</div>
+                <div class="event-time">⏰ Daily, 9:00 AM - 6:00 PM</div>
+                <div class="event-location">📍 Forest Adventure Zone</div>
+                <div class="event-description">Soar through the treetops on our thrilling zip line course. Safety equipment provided.</div>
+                <div class="event-price">$35 per person</div>
+            </div>
+
+            <div class="event-card" data-category="family" onclick="openEvent('movie-night')">
+                <div class="event-icon family">🎬</div>
+                <div class="event-title">Outdoor Movie Night</div>
+                <div class="event-time">⏰ Friday, 8:30 PM - 11:00 PM</div>
+                <div class="event-location">📍 Starlight Lawn</div>
+                <div class="event-description">Watch family-friendly movies under the stars. Blankets and popcorn provided!</div>
+                <div class="event-price">Free for all guests</div>
+            </div>
+
+            <div class="event-card" data-category="sports" onclick="openEvent('water-aerobics')">
+                <div class="event-icon sports">🏊‍♀️</div>
+                <div class="event-title">Aqua Fitness Class</div>
+                <div class="event-time">⏰ Daily, 8:00 AM - 9:00 AM</div>
+                <div class="event-location">📍 Main Pool</div>
+                <div class="event-description">Start your day with energizing water aerobics. Suitable for all fitness levels.</div>
+                <div class="event-price">$12 per class</div>
+            </div>
+
+            <div class="event-card" data-category="entertainment" onclick="openEvent('magic-show')">
+                <div class="event-badge popular">Popular</div>
+                <div class="event-icon entertainment">🎩</div>
+                <div class="event-title">Magic & Comedy Show</div>
+                <div class="event-time">⏰ Sunday, 7:00 PM - 8:30 PM</div>
+                <div class="event-location">📍 Grand Theater</div>
+                <div class="event-description">Professional magician and comedian will amaze and entertain the whole family.</div>
+                <div class="event-price">$20 per person</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                filterTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Event click handler
+        function openEvent(eventId) {
+            // In a real Razor page, this would redirect to a detail page
+            // For demo purposes, showing an alert
+            alert(`Opening event details for: ${eventId}`);
+
+            // In Razor Pages, you might do:
+            // window.location.href = `/Events/Details/${eventId}`;
+            // or use ASP.NET Core's URL generation helpers
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Stagger the animation of cards appearing
+            eventCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

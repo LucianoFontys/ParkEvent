@@ -1,0 +1,118 @@
+﻿@page
+@model ParkEvent.Pages.LoginEmployeesModel
+@{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Login - Adventure Bay Resort</title>
+        <link rel="stylesheet" href="~/css/login.css" />
+    </head>
+    <body class="employee-login">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="logo-section">
+                        <div class="logo-icon employee-icon">👨‍💼</div>
+                        <h1>Employee Portal</h1>
+                        <p>Adventure Bay Resort Staff Access</p>
+                    </div>
+                </div>
+
+                <form class="login-form" action="/Employee/Login" method="post">
+                    <div class="form-group">
+                        <label for="employeeId">Employee ID</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="employeeId" name="employeeId" placeholder="Enter your employee ID" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me on this device
+                        </label>
+                    </div>
+
+                    <button type="submit" class="login-btn employee-btn">
+                        <span>Sign In to Portal</span>
+                        <div class="btn-animation"></div>
+                    </button>
+
+                    <div class="form-footer">
+                        <a href="/Employee/ForgotPassword" class="forgot-link">Forgot your password?</a>
+                        <div class="help-text">
+                            <p>Need help? Contact IT Support</p>
+                            <a href="tel:+1234567890">📞 (123) 456-7890</a>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="security-notice">
+                    <div class="security-icon">🔐</div>
+                    <p>This is a secure employee portal. All access is monitored and logged.</p>
+                </div>
+            </div>
+
+            <div class="background-elements">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+        </div>
+
+        <script>
+            function togglePassword(inputId) {
+                const input = document.getElementById(inputId);
+                const button = input.nextElementSibling;
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    button.textContent = '🙈';
+                } else {
+                    input.type = 'password';
+                    button.textContent = '👁️';
+                }
+            }
+
+            // Add form validation and animation
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.querySelector('.login-form');
+                const inputs = document.querySelectorAll('input');
+
+                // Add focus animations
+                inputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        this.parentElement.classList.add('focused');
+                    });
+
+                    input.addEventListener('blur', function() {
+                        if (!this.value) {
+                            this.parentElement.classList.remove('focused');
+                        }
+                    });
+                });
+
+                // Form submission with animation
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = document.querySelector('.login-btn');
+                    submitBtn.classList.add('loading');
+                    submitBtn.innerHTML = '<span>Signing In...</span><div class="spinner"></div>';
+                });
+            });
+        </script>
+    </body>
+    </html>
+}

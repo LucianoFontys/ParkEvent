@@ -6,10 +6,48 @@
     <title>@ViewData["Title"] - ParkEvent</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     
-    <link rel="stylesheet" href="~/ParkEvent.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/nav_css.css" asp-append-version="true" />
 </head>
 <body>
     <div class="container">
+        <nav class="navbar">
+            <!-- Slide-out menu button (left) -->
+            <button class="menu-btn" id="menuBtn">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+
+            <!-- Logo (center) -->
+            <div class="logo">
+                <h1>YourLogo</h1>
+            </div>
+
+            <!-- Login button (right) -->
+            <a asp-page="/LoginCustomers" class="login-btn">Login</a>
+            <!--<button class="login-btn">Login</button>-->
+        </nav>
+
+        <!-- Slide-out menu overlay -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <!-- Slide-out menu -->
+        <div class="slide-menu" id="slideMenu">
+            <div class="menu-header">
+                <h2>Menu</h2>
+                <button class="close-btn" id="closeBtn">&times;</button>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+            </ul>
+        </div>
+
+        <script src="~/js/site.js"></script>
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -1,0 +1,93 @@
+﻿@page
+@model ParkEvent.Pages.EventManagerModel
+@{
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vacation Park Event Manager</title>
+        <link rel="stylesheet" href="~/css/event-manager.css" asp-append-version="true">
+        
+    </head>
+    <body>
+        <div class="container-eventmanager">
+            <div class="header">
+                <h1>🏖️ Vacation Park Event Manager</h1>
+                <p>Organize and manage all your park events with ease</p>
+            </div>
+
+            <div class="main-content">
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <button class="nav-btn" onclick="previousMonth()">‹</button>
+                        <div class="month-year" id="monthYear"></div>
+                        <button class="nav-btn" onclick="nextMonth()">›</button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+
+                <div class="sidebar">
+                    <h2>📅 Add New Event</h2>
+                    <form id="eventForm">
+                        <div class="form-group">
+                            <label for="selectedDate">Selected Date:</label>
+                            <input type="text" id="selectedDate" class="form-control" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventType">Event Type:</label>
+                            <select id="eventType" class="form-control" required>
+                                <option value="">Select an event type</option>
+                                <option value="Pool Party">🏊‍♀️ Pool Party</option>
+                                <option value="Beach Volleyball">🏐 Beach Volleyball</option>
+                                <option value="Kids Club">👶 Kids Club</option>
+                                <option value="Live Music">🎵 Live Music</option>
+                                <option value="Water Aerobics">💦 Water Aerobics</option>
+                                <option value="BBQ Night">🍖 BBQ Night</option>
+                                <option value="Dance Class">💃 Dance Class</option>
+                                <option value="Movie Night">🎬 Movie Night</option>
+                                <option value="Fitness Class">🏋️‍♀️ Fitness Class</option>
+                                <option value="Craft Workshop">🎨 Craft Workshop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventTime">Time:</label>
+                            <input type="time" id="eventTime" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employeeSelect">Assign Employees:</label>
+                            <select id="employeeSelect" class="form-control">
+                                <option value="">Select an employee</option>
+                                <option value="Sarah Johnson">Sarah Johnson</option>
+                                <option value="Mike Davis">Mike Davis</option>
+                                <option value="Emma Wilson">Emma Wilson</option>
+                                <option value="John Smith">John Smith</option>
+                                <option value="Lisa Brown">Lisa Brown</option>
+                                <option value="Tom Anderson">Tom Anderson</option>
+                                <option value="Amy Taylor">Amy Taylor</option>
+                                <option value="David Lee">David Lee</option>
+                            </select>
+                            <div class="employee-list" id="assignedEmployees"></div>
+                        </div>
+
+                        <button type="submit" class="btn">Add Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Details Modal -->
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Events for Date</h3>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+        <script src="~/js/EventManager.js" asp-append-version="true"></script>
+    </body>
+}

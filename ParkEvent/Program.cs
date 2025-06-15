@@ -1,7 +1,12 @@
+using ParkEvent.SQL;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Server=mssqlstud.fhict.local;Database=dbi417189_groupp;User Id=dbi417189_groupp;Password=Maandag1404!;TrustServerCertificate=true;")));
 
 var app = builder.Build();
 
@@ -19,6 +24,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
 
 app.MapRazorPages();
 

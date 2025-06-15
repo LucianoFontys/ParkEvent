@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ParkEvent</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    
     <link rel="stylesheet" href="~/css/nav_css.css" asp-append-version="true" />
+    
 </head>
 <body>
     <div class="container">
@@ -24,7 +23,7 @@
             </div>
 
             <!-- Login button (right) -->
-            <a asp-page="/LoginCustomers" class="login-btn">Login</a>
+            <a asp-page="/LoginCustomers" class="login-btnCust">Login</a>
             <!--<button class="login-btn">Login</button>-->
         </nav>
 
@@ -43,6 +42,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a asp-page="/EventManager">Event Manager</a></li>
             </ul>
         </div>
 

@@ -2,13 +2,13 @@
 {
     public class User
     {
-        private int _id;
-        private string _name;
+        public int _id { get; set; }
+        public string _name { get; set; }
 
         public User(int id, string name)
         {
-            _name = name;
             _id = id;
+            _name = name;
         }
     }
 }

@@ -59,14 +59,10 @@
                             <label for="employeeSelect">Assign Employees:</label>
                             <select id="employeeSelect" class="form-control">
                                 <option value="">Select an employee</option>
-                                <option value="Sarah Johnson">Sarah Johnson</option>
-                                <option value="Mike Davis">Mike Davis</option>
-                                <option value="Emma Wilson">Emma Wilson</option>
-                                <option value="John Smith">John Smith</option>
-                                <option value="Lisa Brown">Lisa Brown</option>
-                                <option value="Tom Anderson">Tom Anderson</option>
-                                <option value="Amy Taylor">Amy Taylor</option>
-                                <option value="David Lee">David Lee</option>
+                                @foreach (var User in Model.Users)
+                                {
+                                    <option value="@User._id">@User._name</option>
+                                }
                             </select>
                             <div class="employee-list" id="assignedEmployees"></div>
                         </div>

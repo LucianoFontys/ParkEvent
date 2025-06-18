@@ -8,51 +8,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParkEvent.Pages
 {
     public class EventManagerModel : PageModel
     {
-        /*private readonly AppDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public EventManagerModel(AppDbContext context)
+        public EventManagerModel(IConfiguration configuration)
         {
-            _context = context;
+            _configuration = configuration;
         }
 
-        public List<User> Users { get; set; }
-
-        [BindProperty]
-        public int? SelectedUserId { get; set; }
-
-        public async Task OnGetAsync()
-        {
-            Users = await _context.Users.Select(u => new SelectListItem
-            {
-                ValueTask = u.Id.ToString(),
-                TextReader = u.Name
-            }).tolistAsync();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            Users = await _context.Users
-                .Select(u => new SelectListItem
-                {
-                    Value = u.Id.ToString(),
-                    Text = u.Name
-                })
-                .ToListAsync();
-
-            if (!SelectedUserId.HasValue)
-            {
-                ModelState.AddModelError(string.Empty, "Please select a user.");
-                return Page();
-            }*/
-
+        [Required]
+        public List<User> Users { get; set; } = new List<User>();
 
         public void OnGet()
         {
+            try
+            {
+                Users = new List<User>();
+
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT Id, Firstname FROM dbo.[User];";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                Users.Add(new User(id, name));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }  
         }
     }
 }
